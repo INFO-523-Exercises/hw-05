@@ -11,7 +11,7 @@ jobs:
     - name: Check Files
       run: |
         checklist::quit_on_failure({
-          checklist::check_allowed_files(c("hw-03.qmd", "hw-03.Rproj", "README.md", "data/*", "images/*"))
+          checklist::check_allowed_files(c("hw-05.qmd", "hw-05.Rproj", "README.md", "data/*", "images/*"))
         })
       shell: Rscript {0}
 
@@ -31,14 +31,14 @@ jobs:
       shell: Rscript {0}
     - name: Install Missing Packages
       run: |
-        missing = checklist::install_missing_pkgs(dir = "./", glob = "hw-03.qmd")
+        missing = checklist::install_missing_pkgs(dir = "./", glob = "hw-05.qmd")
       shell: Rscript {0}
     - name: Check Renders
       run: |
-        checklist::check_qmd_renders("hw-03.qmd")
+        checklist::check_qmd_renders("hw-05.qmd")
       shell: Rscript {0}
     - name: Create artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: hw-03-html
-        path: hw-03.html
+        name: hw-05-html
+        path: hw-05.html
