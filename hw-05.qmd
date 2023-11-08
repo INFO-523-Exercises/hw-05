@@ -7,23 +7,23 @@ format:
 toc: true
 ---
 
-## 1 - Key lyme pie
+## 1 - Data selection and exploration
 
 ```{r}
 #| label: label-me-1
 
 ```
 
-## 2 - COVID survey - interpret
+## 2 - Data preprocessing
 
 ```{r}
 #| label: label-me-2
 
 ```
 
-## 3 - COVID survey - reconstruct
+## 3 - Ordinary Least Squares Regression
 
 
-## 4 - COVID survey - re-reconstruct
+## 4 - Alternative regressions 
 
-## 5 - COVID survey - another view
+## 5 - Model performance and correct selection
