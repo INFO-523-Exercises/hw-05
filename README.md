@@ -28,7 +28,7 @@ For this Homework, find the types of regressions, their pros and cons, and imple
     - Finally, come up with a question to solve from the data that will be relevant for a regression
 
 
-2.  Data preprocessing is a critical step in the pipeline of a regression analysis. It involves preparing and cleaning the data to ensure that the regression model is accurate, efficient, and relevant. Here are typical steps involved in data preprocessing for regression (but not all are necessary):
+2.  **Data preprocessing**: Data preprocessing is a critical step in the pipeline of a regression analysis. It involves preparing and cleaning the data to ensure that the regression model is accurate, efficient, and relevant. Here are typical steps involved in data preprocessing for regression (but not all are necessary):
 
     - **Data Cleaning**:
         -   **Handling Missing Values**: Fill in missing data using techniques like mean or median imputation, or model-based methods, or drop rows/columns with missing values.
