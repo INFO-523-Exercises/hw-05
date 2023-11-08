@@ -9,86 +9,65 @@ sentences. Make a commit at least after finishing each exercise, or
 better yet, more frequently. Push your work regularly to GitHub, and make sure 
 all checks pass.
 
-1.  **Key lyme pie.** The goal of this exercise is to recreate a pie
-    chart in R and then improve it by presenting the same information as
-    a bar graph. The pie chart to be recreate is below and it comes from
-    the Lyme Disease Association. (Source:
-    [https://lymediseaseassociation.org/resources/2018-reported-lyme-cases-top-15-states](https://lymediseaseassociation.org/resources/2018-reported-lyme-cases-top-15-states/).)
+For this Homework, find the types of regressions, their pros and cons, and implementation [here](https://datamineaz.org/tables/model-cheatsheet.html). 
 
-    <img src="images/2018_case_numbers_final.jpg" title="Bar chart of 2018 US reported lyme disease cases featuring top 15 states" alt="Bar chart of 2018 US reported lyme disease cases featuring top 15 states" width="90%" />
+1.  **Data selection and exploration** Here, you are tasked to select a dataset from the 2023 #tidytuesday repository that is relevant for regression analysis, including data exploration and interpretation of these results. 
 
     Below are the steps I recommend you follow and some guidance on what
     (not) to worry about:
 
-    -   First, create the data frame: Use the annotations in the
-        visualization provided to do this. You should create the new
-        data frame using the `tibble()` or the `tribble()` functions.
+    -   First, read in the data from [#tidytuesday](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023), either by downloading it and placing it into a `data/` folder, or via the raw .csv link.
 
-    -   Then, recreate the pie chart: When recreating the pie chart you
-        do not need to
+    -   Then, conduct exploratory data analysis: When exploring, you should:
 
-        -   make it a 3D pie chart (2D is sufficient)
-        -   match the colors (default ggplot2 colors or any other color
-            palette is fine)
-        -   annotate the plot in the same way (just the legend is
-            sufficient)
-        -   match the entire caption (see below for what we want you to
-            match)
+        -   describe all columns that you will be using (data type, what the column units are, etc. Just reference the #tidytuesday README for the data)
+        -   describe and interpret missing values, outliers 
+        -   describe data shape and whether or not the data needs transforming
+        -   correctly identify relationships that you will be examining
 
-        However you should,
 
-        -   make a 2D pie chart
-        -   present a legend on the right that shows the mapping of the
-            colors to states
-        -   match the title text, location, and alignment
-        -   match the text, location, and alignment of the first two
-            lines of the caption
+2.  Data preprocessing is a critical step in the pipeline of a regression analysis. It involves preparing and cleaning the data to ensure that the regression model is accurate, efficient, and relevant. Here are typical steps involved in data preprocessing for regression (but not all are necessary):
 
-    -   Finally, improve the visualization by presenting this
-        information in the form of a bar graph. And as an additional
-        challenge, imagine you’re working for the state of Connecticut,
-        so highlight that bar corresponding to that state in some way.
-        Write a sentence or two describing why you chose to highlight
-        the Connecticut info the way you did.
+    - **Data Cleaning**:
+        -   **Handling Missing Values**: Fill in missing data using techniques like mean or median imputation, or model-based methods, or drop rows/columns with missing values.
+        -   **Removing Outliers**: Identify and remove anomalies that can skew the results.
+    - **Data Transformation**:
+        -   **Feature Scaling**: Standardize or normalize features so that they're on the same scale, which is important for methods like gradient descent to converge quickly.
+        -   **Variable Transformation**: Apply transformations (e.g., log, square root, or power transformations) to deal with skewness and to satisfy model assumptions.
+    - **Data Reduction**
+        -   **Dimensionality Reduction**: Use techniques like Principal Component Analysis (PCA) to reduce the number of features while retaining most of the variance.
+        -   **Binning/Discretization**: Convert continuous variables into categorical bins if necessary.
+    - **Feature Engineering**
+        -   **Creating Polynomial Features**: Add polynomial or interaction terms to model non-linear relationships.
+        -   **Domain-specific Features**: Engineer new features that could have predictive power based on domain knowledge.
+    - **Coding Categorical Variables**
+        - Label Encoding: Transform categorical values into numerical labels (aka Dummy Variables).
+    
 
-2.  **COVID survey - interpret.** A survey was conducted on the
-    attitudes and opinions towards COVID-19 vaccination held by medical
-    and nursing students across the US. The data were collected by Pavan
-    Shah, Giorgio Caturegli, Galen Shi, and Joshua Materi at Johns
-    Hopkins School of Medicine. Huge thanks to Giorgio Caturegli for
-    sharing the data with us! The following visualization was created
-    based on the survey results.
+3.  **Ordinary Least Squares (OLS) Regression** Conducting an Ordinary Least Squares (OLS) regression with resampling and evaluating the model performance involves a sequence of steps. Here's a structured approach to this exercise:
 
-    Each facet in the visualization represents a response-explanatory
-    variable combination. The response variables are in the columns and
-    the explanatory variables are in the rows of the grid. For each
-    response variable the survey takers indicated their level of
-    agreement with the given statement. The responses were on a Likert
-    scale: 1 - Strongly Agree, 2 - Somewhat Agree , 3 - Neither Agree
-    Nor Disagree, 4 - Somewhat Disagree, 5 - Strongly Disagree.
-
-    Within each facet the data are represented with points (indicating
-    the mean Likert score) and error bars spanning from 10th to 90th
-    percentiles of the values of the response variable for each level of
-    the explanatory variable. The first row is the only exception to
-    this. This row of panes is noted as "All", meaning that the it’s the
-    distribution of each of the response variables without conditioning
-    on any of the explanatory variables.
-
-    Your task for this question is to take a close look at this plot and
-    interpret it. There is a lot going on here, which is customary for
-    plots that go into scientific publications – they tend to be very
-    information dense, for better or worse… As you interpret it, discuss
-    if there are any results that agree or disagree with your intuition.
-    There is a lot you can say, but we don’t need you to be exhaustive.
-    Please provide three concrete examples.
-
-<img src="images/plot-10-90-1.png" width="100%" />
-
-3.  **COVID survey - reconstruct.** In this exercise you will
-    reconstruct the plot provided in Exercise 2. You can find the raw
-    data in `data/survey.csv`. Additional information on the survey can
-    be found in `data/covid_survey.pdf`.
+    - **Assumption Checks**:
+        - Verify OLS assumptions such as linearity, independence, homoscedasticity, and normality of residuals. Its okay if your data does not meet the assumptions, but consider that you might need to transform your data first.
+    - **Splitting the Dataset**:
+        - Divide the dataset into training (0.8) and testing (0.2) sets to evaluate the performance of the model.
+    - **Resampling**:
+        -  If your data is imbalanced or if you want to improve the robustness of your model, apply resampling techniques.
+        -  For cross-validation, use techniques like k-fold cross-validation.
+    - **Model Building**:
+        -  Using the training data, construct an OLS regression model. (Hint: see the methods in the model cheatsheet table on the course website)
+    - **Model Diagnostics**:
+        - Analyze the regression diagnostics from the OLS model to check for any violations of regression assumptions.
+        - Examine the significance of variables using p-values.
+    - **Evaluate Model Performance**:
+        - Apply the model to the test set to predict the outcomes.
+        - Use appropriate performance metrics (e.g., R-squared, RMSE, MAE) to evaluate the model's predictive accuracy.
+    - **Interpret Results**:
+        - Interpret the coefficients of the model, and assess the overall fit and predictive power.
+        - Discuss the implications of your findings in the context of the problem.
+    - **Review and Conclusion**:
+        - Summarize the process and findings.
+        - If necessary, suggest steps for further improvement, additional data collection, or alternative modeling techniques.
+      
 
 -   Load the data using `read_csv()`. View the result and decide if any
     rows on top need to be `skip`ped. If so, reload again with the
