@@ -75,5 +75,5 @@ For this Homework, find the types of regressions, their pros and cons, and imple
    - **Feature Scaling**: Standardize or normalize features especially for methods like Ridge and Lasso which are sensitive to the scale of input variables.
    - **Hyperparameter Tuning**: Use techniques like cross-validation to find optimal parameters (e.g., Ridge regression's alpha parameter).
    - **Model Evaluation**: Evaluate the model using appropriate performance metrics and interpret the sparse coefficients.
-  
-Otherwise, the steps you used for your OLS regression are also relevant here.
+   
+   Otherwise, the steps you used for your OLS regression are also relevant here.
